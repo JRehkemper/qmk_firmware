@@ -22,3 +22,4 @@
 #define SPLIT_OLED_ENABLE
 
 #define RGB_MATRIX_LED_COUNT 70
+
