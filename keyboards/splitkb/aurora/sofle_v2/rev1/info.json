@@ -2,13 +2,13 @@
     "keyboard_name": "Aurora Sofle v2 rev1",
     "diode_direction": "COL2ROW",
     "encoder": {
-        "enabled": true,
+        "enabled": false,
         "rotary": [
             {"pin_a": "B2", "pin_b": "B6"}
         ]
     },
     "features": {
-        "bootmagic": true,
+        "bootmagic": false,
         "extrakey": true,
         "mousekey": true,
         "oled": true
