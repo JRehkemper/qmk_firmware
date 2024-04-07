@@ -226,7 +226,26 @@ static void penguin_animation(void) {
         oled_set_cursor(0,0);
         oled_write_raw_P(idle_animation[current_frame],sizeof(idle_animation[current_frame]));
     } else {
-        if (timer_elapsed32(anim_timer) > 200) {
+        int16_t interval;
+        if (get_current_wpm() < 10) {
+            interval = 500;
+        } else if (get_current_wpm() < 20) {
+            interval = 400;
+        } else if (get_current_wpm() < 30) {
+            interval = 300;
+        } else if (get_current_wpm() < 40) {
+            interval = 250;
+        } else if (get_current_wpm() < 50) {
+            interval = 200;
+        } else if (get_current_wpm() < 60) {
+            interval = 150;
+        } else if (get_current_wpm() < 70) {
+            interval = 100;
+        } else {
+            interval = 50;
+        }
+    //if (timer_elapsed32(anim_timer) > 200) {
+    if (timer_elapsed32(anim_timer) > interval) {
             anim_timer = timer_read32();
 
             current_frame = (current_frame + 1) % 2;
@@ -247,7 +266,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if(record->event.pressed) {
                 is_jumping = true;
                 showed_jump = false;
-                speed = 1500;
             } else {
                 is_jumping = false;
             }
