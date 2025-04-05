@@ -29,16 +29,6 @@ bool is_jumping = false;
 bool showed_jump = false;
 
 void tostring(char [], int);
-// https://github.com/HellSingCoder/qmk_firmware/blob/master/keyboards/sofle/keymaps/helltm/keymap.c#L63b0
-
-
-
-// Array of all bitmaps for convenience. (Total bytes used to store images in PROGMEM = 528)
-//const int epd_bitmap_allArray_LEN = 1;
-//const unsigned char* epd_bitmap_allArray[1] = {
-//	epd_bitmap_apple_icon_24
-//};
-
 
 static void penguin_animation(int layer) {
 	// 'apple-icon-24', 32x128px
@@ -263,16 +253,17 @@ static void penguin_animation(int layer) {
 		oled_write_raw_P(typing_animation[current_frame],sizeof(typing_animation[current_frame]));
 	}
 
-	//char speed_as_string[5];
-	//tostring(speed_as_string, speed);
-	
-	char layerstring[4];
+	/*	
+	char layerstring[5];
 	tostring(layerstring, layer);
 	oled_set_cursor(2,15);
 	oled_write(layerstring, false);
+	*/
 
-	//oled_set_cursor(2,15);
-	//oled_write(speed_as_string, false);
+	char speed_as_string[5];
+	tostring(speed_as_string, speed);
+	oled_set_cursor(2,15);
+	oled_write(speed_as_string, false);
 
 };
 

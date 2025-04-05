@@ -1,9 +1,6 @@
 {
     "manufacturer": "splitkb.com",
     "maintainer": "splitkb",
-    "build": {
-        "lto": true
-    },
     "development_board": "elite_c",
     "split": {
         "enabled": true
