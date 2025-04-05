@@ -21,9 +21,9 @@
 // The first four layers gets a name for readability, which is then used in the OLED below.
 enum layers {
   _DEFAULT,
-  _LOWER,
-  _RAISE,
-  _ADJUST
+  _MAC,
+  _SYMBOLS,
+  _MOUSE
 };
 
 #ifdef OLED_ENABLE
@@ -191,15 +191,15 @@ void render_logo(void) {
 void render_logo_text(void) {
     //oled_write_P(PSTR("sofle"), false);
     switch (get_highest_layer(layer_state | default_layer_state)) {
-	    case _LOWER:
+	    case _MAC:
 		    activeLayer = 1;
 		    oled_write_P(PSTR(" MAC "), false);
 		    break;
-	    case _RAISE:
+	    case _SYMBOLS:
 		    activeLayer = 2;
 		    oled_write_P(PSTR("SYMBL"), false);
 		    break;
-	    case _ADJUST:
+	    case _MOUSE:
 		    activeLayer = 3;
 		    oled_write_P(PSTR("MOUSE"), false);
 		    break;
@@ -236,13 +236,13 @@ void render_layer_state(void) {
         0x20, 0xdd, 0xde, 0xdf, 0x20, 0};
 
     switch (get_highest_layer(layer_state | default_layer_state)) {
-	    case _LOWER:
+	    case _MAC:
 		    oled_write_P(lower_layer, false);
 		    break;
-	    case _RAISE:
+	    case _SYMBOLS:
 		    oled_write_P(raise_layer, false);
 		    break;
-	    case _ADJUST:
+	    case _MOUSE:
 		    oled_write_P(adjust_layer, false);
 		    break;
 	    default:
@@ -269,13 +269,13 @@ bool oled_task_kb(void) {
 		render_logo_text();
 		penguin_animation(activeLayer);
 		/*switch (get_highest_layer(layer_state | default_layer_state)) {
-			case _LOWER:
+			case _MAC:
 				penguin_animation('1');
 				break;
-			case _RAISE:
+			case _SYMBOLS:
 				penguin_animation('2');
 				break;
-			case _ADJUST:
+			case _MOUSE:
 				penguin_animation('3');
 				break;
 			default:

@@ -253,7 +253,7 @@ static void penguin_animation(int layer) {
 		oled_write_raw_P(typing_animation[current_frame],sizeof(typing_animation[current_frame]));
 	}
 
-	/*	
+	/* testing to display different image on mac-layer
 	char layerstring[5];
 	tostring(layerstring, layer);
 	oled_set_cursor(2,15);
