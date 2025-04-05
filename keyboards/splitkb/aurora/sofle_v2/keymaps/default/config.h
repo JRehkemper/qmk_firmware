@@ -29,7 +29,7 @@
  * configure LED Backlight
  */
 #define RGBLIGHT_LAYERS
-#define RGBLIGHT_MAX_LAYERS 3
+#define RGBLIGHT_MAX_LAYERS 4
 
 /*
  * shrink firmware

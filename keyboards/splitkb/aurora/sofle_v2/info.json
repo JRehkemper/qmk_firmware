@@ -12,8 +12,5 @@
     "usb": {
         "device_version": "1.0.0",
         "vid": "0x8D1D"
-    },
-    "dynamic_keymap": {
-	"layer_count": 3
     }
 }
