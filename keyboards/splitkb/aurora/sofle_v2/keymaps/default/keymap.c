@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TAB,     DE_Q,       DE_W,           DE_E,           DE_R,           DE_T,                                   DE_Z,       DE_U,           DE_I,           DE_O,           DE_P,       DE_UDIA,
             TG(3),      DE_A,       DE_S,           DE_D,           DE_F,           DE_G,                                   DE_H,       DE_J,           DE_K,           DE_L,           DE_ODIA,    DE_ADIA,
             DE_LABK,    DE_Y,       LCMD_T(DE_X),   LOPT_T(DE_C),   LCTL_T(DE_V),   DE_B,       _______,        _______,    DE_N,       LCTL_T(DE_M),   LOPT_T(DE_COMM),LCMD_T(DE_DOT), DE_MINS,    DE_HASH,
-                                    DF(0),        KC_LCTL,        MO(2),          KC_LSFT,    KC_BSPC,        KC_ENT,     KC_SPC,     MO(2),          KC_LCTL,        KC_RALT
+                                    DF(0),        KC_LCMD,        MO(2),          KC_LSFT,    KC_BSPC,        KC_ENT,     KC_SPC,     MO(2),          KC_LCTL,        KC_RALT
     ),
 
 	[2] = LAYOUT(
