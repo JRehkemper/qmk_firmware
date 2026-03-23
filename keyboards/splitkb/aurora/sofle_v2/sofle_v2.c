@@ -193,11 +193,11 @@ void render_logo_text(void) {
     switch (get_highest_layer(layer_state | default_layer_state)) {
 	    case _MAC:
 		    activeLayer = 1;
-		    oled_write_P(PSTR(" MAC "), false);
+		    oled_write_P(PSTR("LOWER"), false);
 		    break;
 	    case _SYMBOLS:
 		    activeLayer = 2;
-		    oled_write_P(PSTR("SYMBL"), false);
+		    oled_write_P(PSTR("UPPER"), false);
 		    break;
 	    case _MOUSE:
 		    activeLayer = 3;

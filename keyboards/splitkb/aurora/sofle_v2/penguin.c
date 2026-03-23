@@ -225,23 +225,7 @@ static void penguin_animation(int layer) {
 		oled_write_raw_P(idle_animation[current_frame],sizeof(idle_animation[current_frame]));
 	} else {
 		int16_t interval;
-		if (get_current_wpm() < 10) {
-			interval = 500;
-		} else if (get_current_wpm() < 20) {
-			interval = 400;
-		} else if (get_current_wpm() < 30) {
-			interval = 300;
-		} else if (get_current_wpm() < 40) {
-			interval = 250;
-		} else if (get_current_wpm() < 50) {
-			interval = 200;
-		} else if (get_current_wpm() < 60) {
-			interval = 150;
-		} else if (get_current_wpm() < 70) {
-			interval = 100;
-		} else {
-			interval = 50;
-		}
+		interval = 200;
 
 		if (timer_elapsed32(anim_timer) > interval) {
 			anim_timer = timer_read32();
@@ -253,17 +237,10 @@ static void penguin_animation(int layer) {
 		oled_write_raw_P(typing_animation[current_frame],sizeof(typing_animation[current_frame]));
 	}
 
-	/* testing to display different image on mac-layer
-	char layerstring[5];
-	tostring(layerstring, layer);
-	oled_set_cursor(2,15);
-	oled_write(layerstring, false);
-	*/
-
-	char speed_as_string[5];
+	/*char speed_as_string[5];
 	tostring(speed_as_string, speed);
 	oled_set_cursor(2,15);
-	oled_write(speed_as_string, false);
+	oled_write(speed_as_string, false);*/
 
 };
 
