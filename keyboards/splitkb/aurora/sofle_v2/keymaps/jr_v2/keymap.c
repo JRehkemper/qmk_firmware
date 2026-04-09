@@ -99,32 +99,32 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_ALPHA] = LAYOUT(
-  	KC_NO,   	KC_1,    	KC_2,    	KC_3,    	KC_4,    	KC_5,                      								KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_NO,
-  	KC_NO,   	SM_AT,   	KC_W,    	SM_EURO, 	KC_R,    	KC_T,                      								KC_Z,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NO,
-  	KC_NO,   	KC_A,    	KC_S,    	KC_D,    	KC_F,    	KC_G,                      								KC_H,    KC_J,    KC_K,    KC_L,    KC_TAB,  KC_NO,
-  	KC_NO,   	KC_Y,    	KC_X,    	KC_C,    	KC_V,    	KC_B,		KC_NO,         					KC_NO,		KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_MINS, KC_NO,
-           					KC_NO,   	KC_ESC,  	LT(_LOWER, KC_TAB), 	KC_LSFT, 	KC_BSPC,			KC_ENT,		KC_SPC,  LT(_UPPER, KC_ENT), KC_SLSH, KC_NO
+  	KC_NO,   	DE_1,    	DE_2,    	DE_3,    	    DE_4,    	        DE_5,                      					DE_6,       DE_7,               DE_8,           DE_9,           DE_0,       KC_NO,
+  	KC_NO,   	DE_Q,   	DE_W,    	DE_E, 	        DE_R,    	        DE_T,                      					DE_Z,       DE_U,               DE_I,           DE_O,           DE_P,       KC_NO,
+  	KC_NO,   	DE_A,    	DE_S,    	DE_D,    	    DE_F,    	        DE_G,                      					DE_H,       DE_J,               DE_K,           DE_L,           KC_NO,      KC_NO,
+    KC_NO,   	DE_Y,    	LCMD_T(DE_X),LOPT_T(DE_C),  LCTL_T(DE_V),    	DE_B,		KC_NO,         		KC_NO,		DE_N,       LCTL_T(DE_M),       LOPT_T(DE_COMM),LCMD_T(DE_DOT), DE_MINS,    KC_NO,
+            				KC_NO,   	KC_ESC,  	    LT(_LOWER, KC_TAB), KC_LSFT, 	KC_BSPC,			KC_ENT,		KC_SPC,     MO(_UPPER),         DE_SLSH,        KC_NO
 ),
 
 [_LOWER] = LAYOUT(
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                     KC_NO,   KC_PSLS, KC_PAST, KC_PMNS, KC_NO,   KC_NO,
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                     KC_NO,   KC_7,    KC_8,    KC_9,    KC_PPLS, KC_NO,
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                     KC_NO,   KC_4,    KC_5,    KC_6,    KC_NO,   KC_NO,
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,      KC_NO, KC_NO,   KC_1,    KC_2,    KC_3,    KC_PENT, KC_NO,
-           KC_NO,   KC_TRNS, KC_TRNS, KC_LSFT, KC_TRNS,               KC_TRNS, KC_TRNS, KC_PDOT, KC_0,    KC_PCMM
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_PSLS,            KC_PAST,        KC_PMNS,        KC_NO,      KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      DE_7,               DE_8,           DE_9,           KC_PPLS,    KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      DE_4,               DE_5,           DE_6,           KC_NO,      KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,      KC_NO,              KC_NO,      KC_NO,      DE_1,               DE_2,           DE_3,           KC_PENT,    KC_NO,
+                            KC_NO,      KC_TRNS,        KC_TRNS,            KC_LSFT,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_PDOT,            DE_0,           KC_PCMM
 ),
 
 [_UPPER] = LAYOUT(
-  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-  KC_NO,   SM_LCBR, SM_LBRC, KC_DLR,  KC_PERC, KC_AMPR,                   KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_NO,   KC_NO,
-  KC_NO,   KC_HASH, KC_PPLS, KC_EXLM, KC_DQUO, KC_DLR,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_NO,   KC_NO,
-  KC_NO,   KC_LABK, KC_CIRC, KC_NO,   KC_EQL , KC_NO, KC_NO,      KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-           KC_NO,   KC_TRNS, KC_TRNS, KC_LSFT, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
+    KC_NO,      SM_LCBR,    SM_LBRC,    DE_DLR,         DE_PERC,            DE_AMPR,                                    KC_HOME,    KC_PGDN,            KC_PGUP,        KC_END,         KC_NO,      KC_NO,
+    KC_NO,      DE_HASH,    KC_PPLS,    DE_EXLM,        DE_DQUO,            DE_DLR,                                     KC_LEFT,    KC_DOWN,            KC_UP,          KC_RGHT,        KC_NO,      KC_NO,
+    KC_NO,      DE_LABK,    DE_CIRC,    KC_NO,          DE_EQL ,            KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
+                            KC_NO,      KC_TRNS,        KC_TRNS,            KC_LSFT,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,        KC_NO
 )
 };
 
 // --- LOGIC ENGINE ---
-bool is_mac_mode = false; 
+bool is_mac_mode = false;
 
 void tap_smart_key(uint16_t pc_mod, uint16_t pc_key, uint16_t mac_mod, uint16_t mac_key) {
     if (is_mac_mode) {
@@ -146,7 +146,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case SM_EURO: tap_smart_key(KC_RALT, KC_E, KC_LALT, KC_E); return false;
             case SM_TILD: tap_smart_key(KC_RALT, KC_RBRC, KC_LALT, KC_N); return false;
             case SM_PIPE: tap_smart_key(KC_RALT, KC_NONUS_BACKSLASH, KC_LALT, KC_7); return false;
-            case SM_BSLS: 
+            case SM_BSLS:
                 if (is_mac_mode) {
                     register_code(KC_LSFT); register_code(KC_LALT); tap_code(KC_7); unregister_code(KC_LALT); unregister_code(KC_LSFT);
                 } else {
