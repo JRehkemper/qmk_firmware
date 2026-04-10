@@ -101,25 +101,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ALPHA] = LAYOUT(
   	KC_NO,   	DE_1,    	DE_2,    	DE_3,    	    DE_4,    	        DE_5,                      					DE_6,       DE_7,               DE_8,           DE_9,           DE_0,       KC_NO,
   	KC_NO,   	DE_Q,   	DE_W,    	DE_E, 	        DE_R,    	        DE_T,                      					DE_Z,       DE_U,               DE_I,           DE_O,           DE_P,       KC_NO,
-  	KC_NO,   	DE_A,    	DE_S,    	DE_D,    	    DE_F,    	        DE_G,                      					DE_H,       DE_J,               DE_K,           DE_L,           KC_NO,      KC_NO,
+  	KC_NO,   	DE_A,    	DE_S,    	DE_D,    	    DE_F,    	        DE_G,                      					DE_H,       DE_J,               DE_K,           DE_L,           KC_TAB,      KC_NO,
     KC_NO,   	DE_Y,    	LCMD_T(DE_X),LOPT_T(DE_C),  LCTL_T(DE_V),    	DE_B,		KC_NO,         		KC_NO,		DE_N,       LCTL_T(DE_M),       LOPT_T(DE_COMM),LCMD_T(DE_DOT), DE_MINS,    KC_NO,
-            				KC_NO,   	KC_ESC,  	    LT(_LOWER, KC_TAB), KC_LSFT, 	KC_BSPC,			KC_ENT,		KC_SPC,     MO(_UPPER),         DE_SLSH,        KC_NO
+            				KC_NO,   	KC_ESC,  	    MO(_LOWER),         KC_LSFT, 	KC_BSPC,			KC_ENT,		KC_SPC,     MO(_UPPER),         DE_SLSH,        KC_NO
 ),
 
 [_LOWER] = LAYOUT(
     KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_PSLS,            KC_PAST,        KC_PMNS,        KC_NO,      KC_NO,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      DE_7,               DE_8,           DE_9,           KC_PPLS,    KC_NO,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      DE_4,               DE_5,           DE_6,           KC_NO,      KC_NO,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,      KC_NO,              KC_NO,      KC_NO,      DE_1,               DE_2,           DE_3,           KC_PENT,    KC_NO,
-                            KC_NO,      KC_TRNS,        KC_TRNS,            KC_LSFT,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_PDOT,            DE_0,           KC_PCMM
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_KP_7,            KC_KP_8,        KC_KP_9,        KC_PPLS,    KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_KP_4,            KC_KP_5,        KC_KP_6,        KC_NO,      KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_KP_1,            KC_KP_2,        KC_KP_3,        KC_PENT,    KC_NO,
+                            KC_NO,      KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_PDOT,            KC_KP_0,           KC_PCMM
 ),
 
 [_UPPER] = LAYOUT(
     KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
     KC_NO,      SM_LCBR,    SM_LBRC,    DE_DLR,         DE_PERC,            DE_AMPR,                                    KC_HOME,    KC_PGDN,            KC_PGUP,        KC_END,         KC_NO,      KC_NO,
     KC_NO,      DE_HASH,    KC_PPLS,    DE_EXLM,        DE_DQUO,            DE_DLR,                                     KC_LEFT,    KC_DOWN,            KC_UP,          KC_RGHT,        KC_NO,      KC_NO,
-    KC_NO,      DE_LABK,    DE_CIRC,    KC_NO,          DE_EQL ,            KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
-                            KC_NO,      KC_TRNS,        KC_TRNS,            KC_LSFT,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,        KC_NO
+    KC_NO,      DE_LABK,    DE_CIRC,    DE_ACUT,        DE_EQL ,            KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
+                            KC_NO,      KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,        KC_NO
 )
 };
 
