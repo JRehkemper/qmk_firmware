@@ -9,7 +9,7 @@ enum layers {
 };
 
 // Custom Keycodes for Smart OS Symbols
-enum custom_keycodes {
+/*enum custom_keycodes {
     MY_OS_TOGG = SAFE_RANGE, // Esc + M toggle
     SM_AT,   // @ (AltGr+Q or Alt+L)
     SM_EURO, // € (AltGr+E or Alt+E)
@@ -20,11 +20,11 @@ enum custom_keycodes {
     SM_RCBR, // }
     SM_LBRC, // [
     SM_RBRC, // ]
-};
+};*/
 
 // --- COMBOS ---
 // Define the keys that trigger the combo
-const uint16_t PROGMEM slash_combo[] = {KC_S, KC_L, COMBO_END};
+/*const uint16_t PROGMEM slash_combo[] = {KC_S, KC_L, COMBO_END};
 const uint16_t PROGMEM bsls_combo[]  = {KC_LSFT, KC_S, KC_L, COMBO_END};
 const uint16_t PROGMEM pipe_combo[]  = {KC_F, KC_J, COMBO_END};
 const uint16_t PROGMEM tab_combo[]   = {KC_D, KC_K, COMBO_END};
@@ -33,15 +33,16 @@ const uint16_t PROGMEM past_combo[]  = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM cut_combo[]   = {KC_X, KC_V, COMBO_END};
 const uint16_t PROGMEM os_togg_combo[]= {KC_ESC, KC_M, COMBO_END};
 
+*/
 combo_t key_combos[] = {
-    COMBO(slash_combo, KC_SLSH),
+    /*COMBO(slash_combo, KC_SLSH),
     COMBO(bsls_combo, SM_BSLS),
     COMBO(pipe_combo, SM_PIPE),
     COMBO(tab_combo, KC_TAB),
     COMBO(copy_combo, LCTL(KC_C)),
     COMBO(past_combo, LCTL(KC_V)),
     COMBO(cut_combo, LCTL(KC_X)),
-    COMBO(os_togg_combo, MY_OS_TOGG),
+    COMBO(os_togg_combo, MY_OS_TOGG),*/
 };
 
 /* Second half is addressed from LED 35 to 70 */
@@ -92,41 +93,63 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
 
-// --- KEYMAP ---
-// LT(_LAYER, KC) means: Hold for Layer, Tap for Key.
-// Since you want Shift and Space dedicated, I've left them as pure keys.
+// Tap Dance declarations
+enum {
+    TD_Q_AT,
+    TD_E_EURO,
+    TD_A,
+    TD_S,
+    TD_U,
+    TD_O,
+    TD_PLUS,
+    TD_MINUS,
+    TD_QUOTES,
+};
+
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_Q_AT] = ACTION_TAP_DANCE_DOUBLE(DE_Q, KC_AT),
+    [TD_E_EURO] = ACTION_TAP_DANCE_DOUBLE(DE_E, MT(MOD_LSFT, DE_E)),
+    [TD_A] = ACTION_TAP_DANCE_DOUBLE(DE_A, DE_ADIA),
+    [TD_S] = ACTION_TAP_DANCE_DOUBLE(DE_S, DE_SS),
+    [TD_U] = ACTION_TAP_DANCE_DOUBLE(DE_U, DE_UDIA),
+    [TD_O] = ACTION_TAP_DANCE_DOUBLE(DE_O, DE_ODIA),
+    [TD_PLUS] = ACTION_TAP_DANCE_DOUBLE(KC_PLUS, KC_ASTR),
+    [TD_MINUS] = ACTION_TAP_DANCE_DOUBLE(DE_MINS, DE_TILD),
+    [TD_QUOTES] = ACTION_TAP_DANCE_DOUBLE(DE_DQUO, DE_QUOT),
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_ALPHA] = LAYOUT(
   	KC_NO,   	DE_1,    	DE_2,    	DE_3,    	    DE_4,    	        DE_5,                      					DE_6,       DE_7,               DE_8,           DE_9,           DE_0,       KC_NO,
-  	KC_NO,   	DE_Q,   	DE_W,    	DE_E, 	        DE_R,    	        DE_T,                      					DE_Z,       DE_U,               DE_I,           DE_O,           DE_P,       KC_NO,
-  	KC_NO,   	DE_A,    	DE_S,    	DE_D,    	    DE_F,    	        DE_G,                      					DE_H,       DE_J,               DE_K,           DE_L,           KC_TAB,      KC_NO,
+  	KC_NO,   	TD(TD_Q_AT),DE_W,    	TD(TD_E_EURO),  DE_R,    	        DE_T,                      					DE_Z,       TD(TD_U),           DE_I,           TD(TD_O),       DE_P,       KC_NO,
+  	KC_NO,   	TD(TD_A),   TD(TD_S),   DE_D,    	    DE_F,    	        DE_G,                      					DE_H,       DE_J,               DE_K,           DE_L,           KC_TAB,      KC_NO,
     KC_NO,   	DE_Y,    	LCMD_T(DE_X),LOPT_T(DE_C),  LCTL_T(DE_V),    	DE_B,		KC_NO,         		KC_NO,		DE_N,       LCTL_T(DE_M),       LOPT_T(DE_COMM),LCMD_T(DE_DOT), DE_MINS,    KC_NO,
             				KC_NO,   	KC_ESC,  	    MO(_LOWER),         KC_LSFT, 	KC_BSPC,			KC_ENT,		KC_SPC,     MO(_UPPER),         DE_SLSH,        KC_NO
 ),
 
 [_LOWER] = LAYOUT(
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_PSLS,            KC_PAST,        KC_PMNS,        KC_NO,      KC_NO,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_KP_7,            KC_KP_8,        KC_KP_9,        KC_PPLS,    KC_NO,
+    KC_F1,      KC_F2,      KC_F3,      KC_F4,          KC_F5,              KC_F6,                                      KC_F7,      KC_F8,              KC_F9,          KC_F10,         KC_F11,     KC_F12,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_KP_7,            KC_KP_8,        KC_KP_9,        KC_NO,      KC_NO,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_KP_4,            KC_KP_5,        KC_KP_6,        KC_NO,      KC_NO,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_KP_1,            KC_KP_2,        KC_KP_3,        KC_PENT,    KC_NO,
-                            KC_NO,      KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_PDOT,            KC_KP_0,           KC_PCMM
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_KP_1,            KC_KP_2,        KC_KP_3,        KC_NO,      KC_NO,
+                            KC_NO,      KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_PDOT,            KC_KP_0,        KC_PCMM
 ),
 
 [_UPPER] = LAYOUT(
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
-    KC_NO,      SM_LCBR,    SM_LBRC,    DE_DLR,         DE_PERC,            DE_AMPR,                                    KC_HOME,    KC_PGDN,            KC_PGUP,        KC_END,         KC_NO,      KC_NO,
-    KC_NO,      DE_HASH,    KC_PPLS,    DE_EXLM,        DE_DQUO,            DE_DLR,                                     KC_LEFT,    KC_DOWN,            KC_UP,          KC_RGHT,        KC_NO,      KC_NO,
-    KC_NO,      DE_LABK,    DE_CIRC,    DE_ACUT,        DE_EQL ,            KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
+    KC_NO,      KC_CIRC,    KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
+    KC_NO,      KC_LCBR,    KC_RCBR,    DE_LBRC,        DE_RBRC,            KC_DLR,                                     KC_HOME,    KC_PGDN,            KC_PGUP,        KC_END,         KC_NO,      KC_NO,
+    KC_NO,      TD(TD_PLUS),TD(TD_MINUS),DE_EQL,        DE_PERC,            DE_AMPR,                                    KC_LEFT,    KC_DOWN,            KC_UP,          KC_RGHT,        KC_NO,      KC_NO,
+    KC_NO,      KC_LABK,    KC_RABK,    TD(TD_QUOTES),  KC_HASH,            DE_ACUT,    KC_NO,              KC_NO,      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
                             KC_NO,      KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,        KC_NO
 )
 };
 
 // --- LOGIC ENGINE ---
-bool is_mac_mode = false;
+//bool is_mac_mode = false;
 
-void tap_smart_key(uint16_t pc_mod, uint16_t pc_key, uint16_t mac_mod, uint16_t mac_key) {
+/*void tap_smart_key(uint16_t pc_mod, uint16_t pc_key, uint16_t mac_mod, uint16_t mac_key) {
     if (is_mac_mode) {
         register_code(mac_mod); tap_code(mac_key); unregister_code(mac_mod);
     } else {
@@ -160,4 +183,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
     return true;
-}
+}*/
