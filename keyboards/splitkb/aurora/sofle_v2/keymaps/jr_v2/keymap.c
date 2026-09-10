@@ -13,13 +13,15 @@ enum custom_keycodes {
     SM_AT, //(AltGr+Q or Alt+L)
     SM_TILD, // ~ (AltGr++ or Alt+N)
     SM_PIPE, // | (AltGr+< or Alt+7)
-    //MY_OS_TOGG = SAFE_RANGE, // Esc + M toggle
     SM_EURO, // € (AltGr+E or Alt+E)
     SM_BSLS, // \ (AltGr+ß or S+Alt+7)
+    SM_COPY,
+    SM_PASTE
     /*SM_LCBR, // {
     SM_RCBR, // }
     SM_LBRC, // [
     SM_RBRC, // ]   
+    MY_OS_TOGG = SAFE_RANGE, // Esc + M toggle
     */
 };
 
@@ -43,6 +45,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 tap_code16(RALT(DE_PLUS));
             }
             return false;
+        case SM_EURO:
+            /*if (host == OS_MACOS) {
+                tap_code16(RALT(DE_E));
+            } else {*/
+                tap_code16(DE_A);
+            //}
+            return false;
         case SM_PIPE:
             // check for keydown event to prevent second character on keyup event
             if (record->event.pressed) {
@@ -60,13 +69,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 } else {
                     tap_code16(DE_BSLS);
                 }
-            }
-            return false;
-        case SM_EURO:
-            if (host == OS_MACOS) {
-                tap_code16(RALT(DE_E));
-            } else {
-                tap_code16(DE_AT);
             }
             return false;
         default:
@@ -103,12 +105,11 @@ tap_dance_action_t tap_dance_actions[] = {
 // --- COMBOS ---
 // Define the keys that trigger the combo
 const uint16_t PROGMEM pipe_combo[]  = {KC_F, KC_J, COMBO_END};
-// TODO: does not work yet
 const uint16_t PROGMEM slsh_combo[]  = {TD(TD_S), KC_L, COMBO_END}; 
 const uint16_t PROGMEM bsls_combo[]  = {KC_LSFT, TD(TD_S), KC_L, COMBO_END};
 const uint16_t PROGMEM tab_combo[]   = {KC_D, KC_K, COMBO_END};
-//const uint16_t PROGMEM copy_combo[]  = {KC_X, KC_C, COMBO_END};
-//const uint16_t PROGMEM past_combo[]  = {KC_C, KC_V, COMBO_END};
+//const uint16_t PROGMEM copy_combo[]  = {DE_X, DE_C, COMBO_END};
+//const uint16_t PROGMEM past_combo[]  = {DE_C, DE_V, COMBO_END};
 //const uint16_t PROGMEM cut_combo[]   = {KC_X, KC_V, COMBO_END};
 //const uint16_t PROGMEM os_togg_combo[]= {KC_ESC, KC_M, COMBO_END};
 
@@ -116,9 +117,9 @@ combo_t key_combos[] = {
     COMBO(pipe_combo, SM_PIPE),
     COMBO(slsh_combo, DE_SLSH),
     COMBO(bsls_combo, SM_BSLS),
-    COMBO(tab_combo, KC_TAB)
+    COMBO(tab_combo, KC_TAB),
     //COMBO(copy_combo, LCTL(KC_C)),
-    //COMBO(past_combo, LCTL(KC_V)),
+    //COMBO(past_combo, LCTL(KC_V))
     //COMBO(cut_combo, LCTL(KC_X)),
     //COMBO(os_togg_combo, MY_OS_TOGG),
 };
@@ -129,10 +130,10 @@ combo_t key_combos[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_ALPHA] = LAYOUT(
-  	KC_NO,   	DE_1,    	DE_2,    	DE_3,    	    DE_4,    	        DE_5,                      					DE_6,       DE_7,               DE_8,           DE_9,           DE_0,       KC_NO,
+  	KC_ESC,   	DE_1,    	DE_2,    	DE_3,    	    DE_4,    	        DE_5,                      					DE_6,       DE_7,               DE_8,           DE_9,           DE_0,       KC_NO,
   	KC_NO,   	TD(TD_Q_AT),DE_W,    	TD(TD_E_EURO),  DE_R,    	        DE_T,                      					DE_Z,       TD(TD_U),           DE_I,           TD(TD_O),       DE_P,       KC_NO,
   	KC_NO,   	TD(TD_A),   TD(TD_S),   DE_D,    	    DE_F,    	        DE_G,                      					DE_H,       DE_J,               DE_K,           DE_L,           KC_TAB,      KC_NO,
-    KC_NO,   	DE_Y,    	LCMD_T(DE_X),LOPT_T(DE_C),  LCTL_T(DE_V),    	DE_B,		KC_NO,         		KC_NO,		DE_N,       LCTL_T(DE_M),       LOPT_T(DE_COMM),LCMD_T(DE_DOT), DE_MINS,    KC_NO,
+    KC_NO,   	DE_Y,    	LALT_T(DE_X),LGUI_T(DE_C),  LCTL_T(DE_V),    	DE_B,		KC_NO,         		KC_NO,		DE_N,       LCTL_T(DE_M),       LGUI_T(DE_COMM),LALT_T(DE_DOT), DE_MINS,    KC_NO,
             				KC_NO,   	KC_ESC,  	    MO(_LOWER),         KC_LSFT, 	KC_BSPC,			KC_ENT,		KC_SPC,     MO(_UPPER),         DE_SLSH,        KC_NO
 ),
 
