@@ -46,11 +46,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             }
             return false;
         case SM_EURO:
-            /*if (host == OS_MACOS) {
+            if (host == OS_MACOS) {
                 tap_code16(RALT(DE_E));
-            } else {*/
-                tap_code16(DE_A);
-            //}
+            } else {
+                tap_code16(RCMD(DE_E));
+            }
             return false;
         case SM_PIPE:
             // check for keydown event to prevent second character on keyup event
@@ -108,20 +108,18 @@ const uint16_t PROGMEM pipe_combo[]  = {KC_F, KC_J, COMBO_END};
 const uint16_t PROGMEM slsh_combo[]  = {TD(TD_S), KC_L, COMBO_END}; 
 const uint16_t PROGMEM bsls_combo[]  = {KC_LSFT, TD(TD_S), KC_L, COMBO_END};
 const uint16_t PROGMEM tab_combo[]   = {KC_D, KC_K, COMBO_END};
-//const uint16_t PROGMEM copy_combo[]  = {DE_X, DE_C, COMBO_END};
-//const uint16_t PROGMEM past_combo[]  = {DE_C, DE_V, COMBO_END};
-//const uint16_t PROGMEM cut_combo[]   = {KC_X, KC_V, COMBO_END};
-//const uint16_t PROGMEM os_togg_combo[]= {KC_ESC, KC_M, COMBO_END};
+const uint16_t PROGMEM copy_combo[]  = {DE_Y, LGUI_T(DE_C), COMBO_END};
+const uint16_t PROGMEM past_combo[]  = {DE_Y, LCTL_T(DE_V), COMBO_END};
+const uint16_t PROGMEM cut_combo[]   = {DE_Y, LALT_T(DE_X), COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(pipe_combo, SM_PIPE),
     COMBO(slsh_combo, DE_SLSH),
     COMBO(bsls_combo, SM_BSLS),
     COMBO(tab_combo, KC_TAB),
-    //COMBO(copy_combo, LCTL(KC_C)),
-    //COMBO(past_combo, LCTL(KC_V))
-    //COMBO(cut_combo, LCTL(KC_X)),
-    //COMBO(os_togg_combo, MY_OS_TOGG),
+    COMBO(copy_combo, C(KC_C)),
+    COMBO(past_combo, C(KC_V)),
+    COMBO(cut_combo, C(KC_X)),
 };
 
 
@@ -130,18 +128,18 @@ combo_t key_combos[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_ALPHA] = LAYOUT(
-  	KC_ESC,   	DE_1,    	DE_2,    	DE_3,    	    DE_4,    	        DE_5,                      					DE_6,       DE_7,               DE_8,           DE_9,           DE_0,       KC_NO,
-  	KC_NO,   	TD(TD_Q_AT),DE_W,    	TD(TD_E_EURO),  DE_R,    	        DE_T,                      					DE_Z,       TD(TD_U),           DE_I,           TD(TD_O),       DE_P,       KC_NO,
-  	KC_NO,   	TD(TD_A),   TD(TD_S),   DE_D,    	    DE_F,    	        DE_G,                      					DE_H,       DE_J,               DE_K,           DE_L,           KC_TAB,      KC_NO,
-    KC_NO,   	DE_Y,    	LALT_T(DE_X),LGUI_T(DE_C),  LCTL_T(DE_V),    	DE_B,		KC_NO,         		KC_NO,		DE_N,       LCTL_T(DE_M),       LGUI_T(DE_COMM),LALT_T(DE_DOT), DE_MINS,    KC_NO,
-            				KC_NO,   	KC_ESC,  	    MO(_LOWER),         KC_LSFT, 	KC_BSPC,			KC_ENT,		KC_SPC,     MO(_UPPER),         DE_SLSH,        KC_NO
+  	KC_ESC,   	DE_1,    	DE_2,    	DE_3,    	    DE_4,    	        DE_5,                      					DE_6,       DE_7,               DE_8,           DE_9,           DE_0,       KC_TRNS,
+  	KC_TRNS,	TD(TD_Q_AT),DE_W,    	TD(TD_E_EURO),  DE_R,    	        DE_T,                      					DE_Z,       TD(TD_U),           DE_I,           TD(TD_O),       DE_P,       KC_TRNS,
+  	KC_TRNS,	TD(TD_A),   TD(TD_S),   DE_D,    	    DE_F,    	        DE_G,                      					DE_H,       DE_J,               DE_K,           DE_L,           KC_TAB,     KC_TRNS,
+    KC_TRNS,	DE_Y,    	LALT_T(DE_X),LGUI_T(DE_C),  LCTL_T(DE_V),    	DE_B,		KC_TRNS,      		KC_TRNS,	DE_N,       LCTL_T(DE_M),       LGUI_T(DE_COMM),LALT_T(DE_DOT), DE_MINS,    KC_TRNS,
+            				KC_TRNS,	KC_ESC,  	    MO(_LOWER),         KC_LSFT, 	KC_BSPC,			KC_ENT,		KC_SPC,     MO(_UPPER),         DE_SLSH,        KC_TRNS
 ),
 
 [_LOWER] = LAYOUT(
-    KC_NO,      KC_F1,      KC_F2,      KC_F3,          KC_F4,              KC_F5,                                      KC_F6,      KC_F7,              KC_F8,          KC_F9,         KC_F10,     KC_F11,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_KP_7,            KC_KP_8,        KC_KP_9,        KC_NO,      KC_F12,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_KP_4,            KC_KP_5,        KC_KP_6,        KC_NO,      KC_NO,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_KP_1,            KC_KP_2,        KC_KP_3,        KC_NO,      KC_NO,
+    KC_TRNS,    KC_F1,      KC_F2,      KC_F3,          KC_F4,              KC_F5,                                      KC_F6,      KC_F7,              KC_F8,          KC_F9,          KC_F10,     KC_F11,
+    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,            KC_TRNS,                                    KC_TRNS,    KC_KP_7,            KC_KP_8,        KC_KP_9,        KC_TRNS,    KC_F12,
+    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,            KC_TRNS,                                    KC_TRNS,    KC_KP_4,            KC_KP_5,        KC_KP_6,        KC_TRNS,    KC_TRNS,
+    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_KP_1,            KC_KP_2,        KC_KP_3,        KC_TRNS,    KC_TRNS,
                             KC_NO,      KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_PDOT,            KC_KP_0,        KC_PCMM
 ),
 
