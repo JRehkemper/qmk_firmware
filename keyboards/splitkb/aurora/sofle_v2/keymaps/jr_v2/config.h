@@ -85,5 +85,5 @@
 #define TAPPING_TERM_PER_KEY
 #define COMBO_HOLD_TERM 150
 #define COMBO_MUST_TAP_PER_KEY
-// Prevents tap-dance / mod-tap keys from sending their tap action if a combo triggers
 #define COMBO_STRICT_TIMER
+#define COMBO_MUST_HOLD_PER_COMBO
