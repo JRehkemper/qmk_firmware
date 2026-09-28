@@ -190,32 +190,20 @@ void render_logo(void) {
 
 void render_logo_text(void) {
     //oled_write_P(PSTR("sofle"), false);
-    switch (get_highest_layer(layer_state | default_layer_state)) {
-	    case _MAC:
-		    activeLayer = 1;
-		    oled_write_P(PSTR("LOWER"), false);
-		    break;
-	    case _SYMBOLS:
-		    activeLayer = 2;
-		    oled_write_P(PSTR("UPPER"), false);
-		    break;
-	    case _MOUSE:
-		    activeLayer = 3;
-		    oled_write_P(PSTR("MOUSE"), false);
-		    break;
-	    default:
-		    activeLayer = 4;
-		    oled_write_P(PSTR(" PC  "), false);
+    if (keymap_config.swap_lalt_lgui) {
+        oled_write_P(PSTR(" MAC "), false);
+    } else {
+        oled_write_P(PSTR(" PC  "), false);
     }
 }
 
-void render_kb_LED_state(void) {
+/*void render_kb_LED_state(void) {
     // Host Keyboard LED Status
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_P(led_usb_state.num_lock ? PSTR("N ") : PSTR("  "), false);
     oled_write_P(led_usb_state.caps_lock ? PSTR("C ") : PSTR("  "), false);
     oled_write_P(led_usb_state.scroll_lock ? PSTR("S ") : PSTR("  "), false);
-}
+}*/
 
 void render_layer_state(void) {
     static const char PROGMEM default_layer[] = {
@@ -264,11 +252,11 @@ bool oled_task_kb(void) {
 		render_space();
 		render_mod_status_gui_alt(get_mods()|get_oneshot_mods());
 		render_mod_status_ctrl_shift(get_mods()|get_oneshot_mods());
-		render_kb_LED_state();
+		//render_kb_LED_state();
 	} else {
-		render_logo_text();
-		//penguin_animation(activeLayer);
-		/*switch (get_highest_layer(layer_state | default_layer_state)) {
+		//render_logo_text();
+		/*penguin_animation(activeLayer);
+		switch (get_highest_layer(layer_state | default_layer_state)) {
 			case _MAC:
 				penguin_animation('1');
 				break;
@@ -286,7 +274,7 @@ bool oled_task_kb(void) {
 }
 #endif
 
-#ifdef ENCODER_ENABLE
+/*#ifdef ENCODER_ENABLE
 bool encoder_update_kb(uint8_t index, bool clockwise) {
     if (!encoder_update_user(index, clockwise)) {
         return false;
@@ -311,3 +299,4 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     return true;
 }
 #endif
+*/

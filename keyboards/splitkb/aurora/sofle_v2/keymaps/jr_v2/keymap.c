@@ -16,59 +16,34 @@ enum custom_keycodes {
     SM_EURO, // € (AltGr+E or Alt+E)
     SM_BSLS, // \ (AltGr+ß or S+Alt+7)
     SM_COPY,
-    SM_PASTE
+    SM_PASTE,
+    OS_SWAP,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    /*os_variant_t host = detected_host_os();
+    //os_variant_t host = detected_host_os();
     switch(keycode) {
-        case SM_TILD:
-            if (host == OS_MACOS) {
-                tap_code16(RALT(DE_N));
-            } else {
-                tap_code16(RALT(DE_PLUS));
-            }
-            return false;
-        case SM_EURO:
-            if (host == OS_MACOS) {
-                tap_code16(RALT(DE_E));
-            } else {
-                tap_code16(RCMD(DE_E));
-            }
-            return false;
-        case SM_PIPE:
-            // check for keydown event to prevent second character on keyup event
+        case OS_SWAP:
             if (record->event.pressed) {
-                if (host == OS_MACOS) {
-                    tap_code16(RALT(DE_7));
-                } else {
-                    tap_code16(DE_PIPE);
-                }
+                // Toggle both Control/GUI and Alt/GUI simultaneously
+                //keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui;
+                //keymap_config.swap_rctl_rgui = !keymap_config.swap_rctl_rgui;
+                //keymap_config.swap_lalt_lcmd = !keymap_config.swap_lalt_lcmd;
+                //keymap_config.swap_ralt_rcmd = !keymap_config.swap_ralt_rcmd;
+                // Swap Alt <-> GUI only (Maps Alt to Cmd and Windows Key to Option)
+                keymap_config.swap_lalt_lgui = !keymap_config.swap_lalt_lgui;
+                keymap_config.swap_ralt_rgui = !keymap_config.swap_ralt_rgui;
+
+                // Make sure Control <-> GUI swap is DISABLED
+                keymap_config.swap_lctl_lgui = false;
+                keymap_config.swap_rctl_rgui = false;
+
+                // Save the new state to EEPROM so it persists after unplugging
+                eeconfig_update_keymap(keymap_config.raw);
             }
-            return false;
-        case SM_BSLS:
-            if (record->event.pressed) {
-                if (host == OS_MACOS) {
-                    tap_code16(RALT(DE_7));
-                } else {
-                    tap_code16(DE_BSLS);
-                }
-            }
-            return false;
-		case KC_LALT:
-			if (host == OS_MACOS) {
-				tap_code16(KC_LOPT);
-			}
-			return false;
-		case KC_LGUI:
-			if (host == OS_MACOS) {
-				tap_code16(KC_LCMD);
-			}
-			return false;
-        default:
-            return true;
-    }*/
-    return true;
+            return false; // Skip further QMK processing for this custom key
+    }
+    return true; // Process all other keys normally
 }
 
 // Tap Dance declarations
@@ -132,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT(
     KC_NO,      KC_F1,      KC_F2,      KC_F3,          KC_F4,              KC_F5,                                      KC_F6,      KC_F7,              KC_F8,          KC_F9,          KC_F10,     KC_F11,
     KC_NO,      KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,            KC_TRNS,                                    KC_TRNS,    KC_KP_7,            KC_KP_8,        KC_KP_9,        KC_TRNS,    KC_F12,
-    KC_NO,      KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,            KC_TRNS,                                    KC_TRNS,    KC_KP_4,            KC_KP_5,        KC_KP_6,        KC_TRNS,    KC_NO,  
+    KC_NO,      KC_TRNS,    OS_SWAP,    KC_TRNS,        KC_TRNS,            KC_TRNS,                                    KC_TRNS,    KC_KP_4,            KC_KP_5,        KC_KP_6,        KC_TRNS,    KC_NO,  
     KC_NO,      KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_KP_1,            KC_KP_2,        KC_KP_3,        KC_TRNS,    KC_NO,  
                             KC_TRNS,    KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_PDOT,            KC_KP_0,        KC_PCMM
 ),
