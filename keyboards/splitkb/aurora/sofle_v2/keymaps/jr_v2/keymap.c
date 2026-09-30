@@ -10,14 +10,9 @@ enum layers {
 
 // Custom Keycodes for Smart OS Symbols
 enum custom_keycodes {
-    SM_AT, //(AltGr+Q or Alt+L)
-    SM_TILD, // ~ (AltGr++ or Alt+N)
+    OS_SWAP = SAFE_RANGE,
     SM_PIPE, // | (AltGr+< or Alt+7)
-    SM_EURO, // € (AltGr+E or Alt+E)
     SM_BSLS, // \ (AltGr+ß or S+Alt+7)
-    SM_COPY,
-    SM_PASTE,
-    OS_SWAP,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
@@ -63,10 +58,10 @@ tap_dance_action_t tap_dance_actions[] = {
 // --- COMBOS ---
 // Define the keys that trigger the combo
 // missing Ä, Ö, Ü, ß, ?
-const uint16_t PROGMEM pipe_combo[]  = {KC_F, KC_J, COMBO_END};
-const uint16_t PROGMEM slsh_combo[]  = {DE_S, KC_L, COMBO_END}; 
-const uint16_t PROGMEM bsls_combo[]  = {KC_LSFT, DE_S, KC_L, COMBO_END};
-const uint16_t PROGMEM tab_combo[]   = {KC_D, KC_K, COMBO_END};
+const uint16_t PROGMEM pipe_combo[]  = {KC_J, KC_F, COMBO_END};
+const uint16_t PROGMEM slsh_combo[]  = {DE_S, KC_S, COMBO_END}; 
+const uint16_t PROGMEM bsls_combo[]  = {KC_LSFT, KC_L, KC_S, COMBO_END};
+const uint16_t PROGMEM tab_combo[]   = {KC_K, KC_D, COMBO_END};
 const uint16_t PROGMEM copy_combo[]  = {DE_Y, LGUI_T(DE_C), COMBO_END};
 const uint16_t PROGMEM past_combo[]  = {DE_Y, LCTL_T(DE_V), COMBO_END};
 const uint16_t PROGMEM cut_combo[]   = {DE_Y, LALT_T(DE_X), COMBO_END};
