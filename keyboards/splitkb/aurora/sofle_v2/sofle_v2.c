@@ -16,7 +16,7 @@
 
 #include "quantum.h"
 
-//#include "penguin.c"
+#include "penguin.c"
 
 // The first four layers gets a name for readability, which is then used in the OLED below.
 enum layers {
@@ -254,8 +254,8 @@ bool oled_task_kb(void) {
 		render_mod_status_ctrl_shift(get_mods()|get_oneshot_mods());
 		//render_kb_LED_state();
 	} else {
-		//render_logo_text();
-		/*penguin_animation(activeLayer);
+		render_logo_text();
+		penguin_animation(activeLayer);
 		switch (get_highest_layer(layer_state | default_layer_state)) {
 			case _MAC:
 				penguin_animation('1');
@@ -268,7 +268,7 @@ bool oled_task_kb(void) {
 				break;
 			default:
 				penguin_animation('4');
-		}*/
+		}
     }
     return false;
 }
