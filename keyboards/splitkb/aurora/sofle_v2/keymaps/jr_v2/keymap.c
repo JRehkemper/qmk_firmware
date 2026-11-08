@@ -16,7 +16,7 @@ enum custom_keycodes {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    //os_variant_t host = detected_host_os();
+    os_variant_t host = detected_host_os();
     switch(keycode) {
         case OS_SWAP:
             if (record->event.pressed) {
@@ -37,12 +37,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 eeconfig_update_keymap(keymap_config.raw);
             }
             return false; // Skip further QMK processing for this custom key
+        case SM_PIPE:
+            if (record->event.pressed) {
+                if (host == OS_MACOS) {
+                    tap_code16(RALT(KC_7));
+                } else {
+                    tap_code16(RALT(KC_NUBS));
+                }
+            }
+            return false;
+        case SM_BSLS:
+            if (record->event.pressed) {
+                if (host == OS_MACOS) {
+                    tap_code16(RALT(S(KC_7)));
+                } else {
+                    tap_code16(RALT(DE_SS));
+                }
+            }
+            return false;
     }
     return true; // Process all other keys normally
 }
 
 // Tap Dance declarations
-enum {
+/*enum {
     TD_PLUS,
     TD_MINUS,
     TD_QUOTES,
@@ -53,13 +71,13 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_PLUS] = ACTION_TAP_DANCE_DOUBLE(KC_PLUS, KC_ASTR),
     [TD_MINUS] = ACTION_TAP_DANCE_DOUBLE(DE_MINS, DE_TILD),
     [TD_QUOTES] = ACTION_TAP_DANCE_DOUBLE(DE_DQUO, DE_QUOT),
-};
+};*/
 
 // --- COMBOS ---
 // Define the keys that trigger the combo
 // missing Ä, Ö, Ü, ß, ?
 const uint16_t PROGMEM pipe_combo[]  = {KC_J, KC_F, COMBO_END};
-const uint16_t PROGMEM slsh_combo[]  = {DE_S, KC_S, COMBO_END}; 
+const uint16_t PROGMEM slsh_combo[]  = {DE_L, KC_S, COMBO_END}; 
 const uint16_t PROGMEM bsls_combo[]  = {KC_LSFT, KC_L, KC_S, COMBO_END};
 const uint16_t PROGMEM tab_combo[]   = {KC_K, KC_D, COMBO_END};
 const uint16_t PROGMEM copy_combo[]  = {DE_Y, LGUI_T(DE_C), COMBO_END};
@@ -73,7 +91,7 @@ const uint16_t PROGMEM question[]    = {DE_Q, DE_E, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(pipe_combo, SM_PIPE),
-    COMBO(slsh_combo, DE_SLSH),
+    COMBO(slsh_combo, S(KC_7)),
     COMBO(bsls_combo, SM_BSLS),
     COMBO(tab_combo, KC_TAB),
     COMBO(copy_combo, C(KC_C)),
@@ -108,10 +126,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_UPPER] = LAYOUT(
-    KC_NO,      KC_CIRC,    KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
-    KC_NO,      KC_LCBR,    KC_RCBR,    DE_LBRC,        DE_RBRC,            KC_DLR,                                     KC_HOME,    KC_PGDN,            KC_PGUP,        KC_END,         KC_NO,      KC_NO,
-    KC_NO,      TD(TD_PLUS),TD(TD_MINUS),DE_EQL,        DE_PERC,            DE_AMPR,                                    KC_LEFT,    KC_DOWN,            KC_UP,          KC_RGHT,        KC_NO,      KC_NO,
-    KC_NO,      KC_LABK,    KC_RABK,    TD(TD_QUOTES),  KC_HASH,            DE_ACUT,    KC_NO,              KC_NO,      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_NO,              KC_NO,                                      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      DE_SS,          DE_ACUT,            KC_NO ,                                     KC_HOME,    KC_PGDN,            KC_PGUP,        KC_END,         KC_NO,      KC_NO,
+    KC_NO,      DE_CIRC,    KC_NO,      KC_NO,          DE_PLUS,            KC_NO,                                      KC_LEFT,    KC_DOWN,            KC_UP,          KC_RGHT,        KC_NO,      KC_NO,
+    KC_NO,      DE_LABK,    KC_NO,      KC_NO,          DE_HASH,            KC_NO,      KC_NO,              KC_NO,      KC_NO,      KC_NO,              KC_NO,          KC_NO,          KC_NO,      KC_NO,
                             KC_TRNS,    KC_TRNS,        KC_TRNS,            KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,        KC_TRNS
 )
 };
