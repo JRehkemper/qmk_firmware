@@ -83,6 +83,7 @@ const uint16_t PROGMEM tab_combo[]   = {KC_K, KC_D, COMBO_END};
 const uint16_t PROGMEM copy_combo[]  = {DE_Y, LGUI_T(DE_C), COMBO_END};
 const uint16_t PROGMEM past_combo[]  = {DE_Y, LCTL_T(DE_V), COMBO_END};
 const uint16_t PROGMEM cut_combo[]   = {DE_Y, LALT_T(DE_X), COMBO_END};
+const uint16_t PROGMEM esc_combo[]   = {DE_H, DE_G, COMBO_END};
 const uint16_t PROGMEM ae_combo[]    = {DE_A, DE_E, COMBO_END};
 const uint16_t PROGMEM ue_combo[]    = {DE_U, DE_E, COMBO_END};
 const uint16_t PROGMEM oe_combo[]    = {DE_O, DE_E, COMBO_END};
@@ -97,6 +98,7 @@ combo_t key_combos[] = {
     COMBO(copy_combo, C(KC_C)),
     COMBO(past_combo, C(KC_V)),
     COMBO(cut_combo, C(KC_X)),
+    COMBO(esc_combo, KC_ESC),
     COMBO(ae_combo, DE_ADIA),
     COMBO(ue_combo, DE_UDIA),
     COMBO(oe_combo, DE_ODIA),
