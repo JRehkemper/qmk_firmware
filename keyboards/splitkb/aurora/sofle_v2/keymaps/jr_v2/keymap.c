@@ -20,14 +20,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     switch(keycode) {
         case OS_SWAP:
             if (record->event.pressed) {
-                // Toggle both Control/GUI and Alt/GUI simultaneously
-                //keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui;
-                //keymap_config.swap_rctl_rgui = !keymap_config.swap_rctl_rgui;
-                //keymap_config.swap_lalt_lcmd = !keymap_config.swap_lalt_lcmd;
-                //keymap_config.swap_ralt_rcmd = !keymap_config.swap_ralt_rcmd;
+                if (host == OS_MACOS) {
+                    keymap_config.swap_lalt_lgui = true;
+                    keymap_config.swap_ralt_rgui = true;
+                } else {
+                    keymap_config.swap_lalt_lgui = false;
+                    keymap_config.swap_ralt_rgui = false;
+                }
                 // Swap Alt <-> GUI only (Maps Alt to Cmd and Windows Key to Option)
-                keymap_config.swap_lalt_lgui = !keymap_config.swap_lalt_lgui;
-                keymap_config.swap_ralt_rgui = !keymap_config.swap_ralt_rgui;
+                //keymap_config.swap_lalt_lgui = !keymap_config.swap_lalt_lgui;
+                //keymap_config.swap_ralt_rgui = !keymap_config.swap_ralt_rgui;
 
                 // Make sure Control <-> GUI swap is DISABLED
                 keymap_config.swap_lctl_lgui = false;
